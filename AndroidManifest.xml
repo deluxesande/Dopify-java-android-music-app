@@ -15,6 +15,15 @@
         android:theme="@style/Theme.Dopify"
         tools:targetApi="31">
         <activity
+            android:name=".fragments.Searchpage"
+            android:exported="false" />
+        <activity
+            android:name=".fragments.Profilepage"
+            android:exported="false" />
+        <activity
+            android:name=".fragments.Homepage"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>

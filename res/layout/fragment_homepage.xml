@@ -1,17 +1,262 @@
-<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragments.HomePage">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <!-- Banner Container -->
+    <RelativeLayout
+        android:id="@+id/banner_container"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/banner_image"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:contentDescription="Banner Image"
+            android:scaleType="centerCrop"
+            app:shapeAppearanceOverlay="@style/RoundedImageView"/>
+    </RelativeLayout>
+
+    <!-- Popular and Trending -->
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Homepage"
-        android:textSize="20sp"
-        android:layout_centerInParent="true" />
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
+        android:id="@+id/popular_trending_container"
+        android:layout_below="@+id/banner_container"
+        android:layout_marginEnd="16dp">
+
+        <TextView
+            android:id="@+id/popular_trending_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Popular &amp; Trending"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_alignParentStart="true" />
+
+        <ImageView
+            android:id="@+id/popular_right_arrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:contentDescription="Right Arrow"
+            android:src="@drawable/ic_right_arrow" />
+    </RelativeLayout>
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/popular_trending_container"
+        android:layout_marginTop="8dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:scrollbars="none"
+        android:id="@+id/popular_trending_scroll_view"
+        >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <!-- Example item, repeat for each song cover -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginEnd="16dp">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/music_cover_1"
+                    android:layout_width="150dp"
+                    android:layout_height="100dp"
+                    android:contentDescription="Music Cover"
+                    app:shapeAppearanceOverlay="@style/RoundedImageView" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:layout_marginTop="8dp"
+                    android:text="Aki Sioni"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:layout_marginTop="4dp"
+                    android:text="Njerae"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <!-- TO DELETE -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginEnd="16dp">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/music_cover_2"
+                    android:layout_width="150dp"
+                    android:layout_height="100dp"
+                    android:contentDescription="Music Cover"
+                    app:shapeAppearanceOverlay="@style/RoundedImageView" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:layout_marginTop="8dp"
+                    android:text="Aki Sioni"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:layout_marginTop="4dp"
+                    android:text="Njerae"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </HorizontalScrollView>
+
+    <!-- Best Artists   -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
+        android:id="@+id/best_title_container"
+        android:layout_below="@id/popular_trending_scroll_view"
+        android:layout_marginEnd="16dp">
+
+        <TextView
+            android:id="@+id/best_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Best Artists"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_alignParentStart="true" />
+
+        <ImageView
+            android:id="@+id/best_right_arrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:contentDescription="Right Arrow"
+            android:src="@drawable/ic_right_arrow" />
+    </RelativeLayout>
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/best_title_container"
+        android:layout_marginTop="8dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:scrollbars="none"
+        android:id="@+id/best_scroll_view">
+
+        <!-- Example item, repeat for each song cover -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginEnd="16dp">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/best_1"
+                android:layout_width="150dp"
+                android:layout_height="100dp"
+                android:contentDescription="Music Cover"
+                app:shapeAppearanceOverlay="@style/RoundedImageView" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginTop="8dp"
+                android:text="Bruno Mars"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </HorizontalScrollView>
+
+    <!-- Recommended For You    -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
+        android:id="@+id/recommended_container"
+        android:layout_below="@id/best_scroll_view"
+        android:layout_marginEnd="16dp">
+
+        <TextView
+            android:id="@+id/recommended_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Recommended for you"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_alignParentStart="true" />
+
+        <ImageView
+            android:id="@+id/recommended_right_arrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:contentDescription="Right Arrow"
+            android:src="@drawable/ic_right_arrow" />
+    </RelativeLayout>
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/recommended_container"
+        android:layout_marginTop="8dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:scrollbars="none"
+        android:id="@+id/recommended_scroll_view">
+
+        <!-- Example item, repeat for each song cover -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginEnd="16dp">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/recommended_1"
+                android:layout_width="150dp"
+                android:layout_height="100dp"
+                android:contentDescription="Music Cover"
+                app:shapeAppearanceOverlay="@style/RoundedImageView" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginTop="8dp"
+                android:text="Ed Sheeran"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </HorizontalScrollView>
+
+
 
 </RelativeLayout>

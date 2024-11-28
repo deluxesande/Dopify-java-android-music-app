@@ -8,6 +8,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
 import me.deluxesande.dopify.fragments.HomePage;
+import me.deluxesande.dopify.fragments.LibraryPage;
 import me.deluxesande.dopify.fragments.ProfilePage;
 import me.deluxesande.dopify.fragments.SearchPage;
 
@@ -39,6 +40,8 @@ public class MainActivity extends AppCompatActivity {
             selectedFragment = new SearchPage();
         } else if (itemId == R.id.profile) {
             selectedFragment = new ProfilePage();
+        } else if (itemId == R.id.library) {
+            selectedFragment = new LibraryPage();
         }
 
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();

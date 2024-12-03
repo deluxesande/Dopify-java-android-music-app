@@ -26,6 +26,7 @@ import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 
 import org.json.JSONArray;
+import org.json.JSONObject;
 
 public class HomePage extends Fragment {
 
@@ -59,40 +60,30 @@ public class HomePage extends Fragment {
             @Override
             public void onClick(View v) {
                 // Instantiate the RequestQueue.
-                RequestQueue queue = Volley.newRequestQueue(getContext());
+                // RequestQueue queue = Volley.newRequestQueue(getContext());
                 String url = "https://api.restful-api.dev/objects";
 
                 JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
-                        Toast.makeText(getContext(), response.toString(), Toast.LENGTH_SHORT).show();
+                        // Similar to wrapping with a try catch block
+                        JSONObject objectInfo = response.optJSONObject(0);
+                        String objectName = objectInfo.optString("name");
+
+                        Toast.makeText(getContext(), "Object: " + objectName, Toast.LENGTH_SHORT).show();
                     }
                 }, new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(getContext(), "That didn't work!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), "Error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
 
                 // Add the request to the RequestQueue.
-                queue.add(request);
+                // queue.add(request);
 
-                // Request a string response from the provided URL.
-//                StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
-//                        new Response.Listener<String>() {
-//                            @Override
-//                            public void onResponse(String response) {
-//                                // Display the first 500 characters of the response string.
-//                                Toast.makeText(getContext(), response, Toast.LENGTH_SHORT).show();
-//                            }
-//                        }, new Response.ErrorListener() {
-//                    @Override
-//                    public void onErrorResponse(VolleyError error) {
-//                        Toast.makeText(getContext(), "That didn't work!", Toast.LENGTH_SHORT).show();
-//                    }
-//                });
-
-
+                // Add a request (in this example, called stringRequest) to your RequestQueue.
+                MySingleton.getInstance(getContext()).addToRequestQueue(request);
             }
         });
 

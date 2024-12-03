@@ -257,6 +257,14 @@
         </LinearLayout>
     </HorizontalScrollView>
 
-
+    <!-- Add Button at the end -->
+    <Button
+        android:id="@+id/end_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Test API"
+        android:layout_below="@id/recommended_scroll_view"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"/>
 
 </RelativeLayout>

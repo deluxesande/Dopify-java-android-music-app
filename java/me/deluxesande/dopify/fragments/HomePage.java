@@ -56,34 +56,22 @@ public class HomePage extends Fragment {
         // Test API logic
         end_button = view.findViewById(R.id.end_button);
 
+        final MyDataService myDataService = new MyDataService(getContext());
+
         end_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Instantiate the RequestQueue.
-                // RequestQueue queue = Volley.newRequestQueue(getContext());
-                String url = "https://api.restful-api.dev/objects";
-
-                JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
+                myDataService.getData(new MyDataService.VolleyResponseListener() {
                     @Override
-                    public void onResponse(JSONArray response) {
-                        // Similar to wrapping with a try catch block
-                        JSONObject objectInfo = response.optJSONObject(0);
-                        String objectName = objectInfo.optString("name");
-
-                        Toast.makeText(getContext(), "Object: " + objectName, Toast.LENGTH_SHORT).show();
+                    public void onError(String message) {
+                        Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
                     }
-                }, new Response.ErrorListener() {
+
                     @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(getContext(), "Error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
+                    public void onResponse(Object response) {
+                        Toast.makeText(getContext(), response.toString(), Toast.LENGTH_SHORT).show();
                     }
                 });
-
-                // Add the request to the RequestQueue.
-                // queue.add(request);
-
-                // Add a request (in this example, called stringRequest) to your RequestQueue.
-                MySingleton.getInstance(getContext()).addToRequestQueue(request);
             }
         });
 

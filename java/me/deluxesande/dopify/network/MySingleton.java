@@ -1,4 +1,4 @@
-package me.deluxesande.dopify.fragments;
+package me.deluxesande.dopify.network;
 
 import android.content.Context;
 

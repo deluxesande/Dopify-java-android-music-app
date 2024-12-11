@@ -1,6 +1,7 @@
 package me.deluxesande.dopify.fragments;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,21 +13,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import me.deluxesande.dopify.MainActivity;
 import me.deluxesande.dopify.R;
+import me.deluxesande.dopify.services.MyDataService;
 
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
-
-import org.json.JSONArray;
-import org.json.JSONObject;
 
 public class HomePage extends Fragment {
 
@@ -69,6 +59,7 @@ public class HomePage extends Fragment {
 
                     @Override
                     public void onResponse(Object response) {
+                        Log.d("Response", response.toString());
                         Toast.makeText(getContext(), response.toString(), Toast.LENGTH_SHORT).show();
                     }
                 });

@@ -5,4 +5,5 @@
     <color name="active_icon">#E9EAE9</color>
     <color name="icon">#949693</color>
     <color name="light_black">#D3D3D3</color>
+    <color name="grey_shade">#B0B0B0</color>
 </resources>

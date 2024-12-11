@@ -14,14 +14,13 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import me.deluxesande.dopify.R;
-import me.deluxesande.dopify.services.MyDataService;
+import me.deluxesande.dopify.services.SpotifyService;
 
 import com.bumptech.glide.Glide;
 
 public class HomePage extends Fragment {
 
     View view;
-    Button end_button;
 
     @Nullable
     @Override
@@ -43,26 +42,17 @@ public class HomePage extends Fragment {
         Glide.with(this).load(imageUrl).into(recommended_1);
         Glide.with(this).load(imageUrl).into(best_1);
 
-        // Test API logic
-        end_button = view.findViewById(R.id.end_button);
+        final SpotifyService spotifyService = new SpotifyService(getContext());
 
-        final MyDataService myDataService = new MyDataService(getContext());
-
-        end_button.setOnClickListener(new View.OnClickListener() {
+        spotifyService.getData(new SpotifyService.VolleyResponseListener() {
             @Override
-            public void onClick(View v) {
-                myDataService.getData(new MyDataService.VolleyResponseListener() {
-                    @Override
-                    public void onError(String message) {
-                        Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
-                    }
+            public void onError(String message) {
+                Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
+            }
 
-                    @Override
-                    public void onResponse(Object response) {
-                        Log.d("Response", response.toString());
-                        Toast.makeText(getContext(), response.toString(), Toast.LENGTH_SHORT).show();
-                    }
-                });
+            @Override
+            public void onResponse(Object response) {
+                Toast.makeText(getContext(), response.toString(), Toast.LENGTH_SHORT).show();
             }
         });
 

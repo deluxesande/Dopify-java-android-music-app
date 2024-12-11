@@ -7,11 +7,47 @@
     android:layout_height="match_parent"
     tools:context=".fragments.SearchPage">
 
-    <TextView
+    <RelativeLayout
+        android:id="@+id/search_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:background="@drawable/rounded_background"
+        android:padding="10dp">
+
+        <EditText
+            android:id="@+id/search_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toStartOf="@id/search_icon"
+            android:hint="Search"
+            android:padding="8dp"
+            android:background="@android:color/transparent"
+            android:inputType="text" />
+
+        <ImageView
+            android:id="@+id/search_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_search"
+            android:contentDescription="Search Icon"
+            app:tint="@color/grey_shade"
+            />
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/search_here_vector"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Searchpage"
-        android:textSize="20sp"
-        android:layout_centerInParent="true" />
-
+        android:layout_below="@id/search_bar"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="156dp"
+        android:layout_marginTop="206dp"
+        android:layout_marginEnd="154dp"
+        android:contentDescription="Search Here Vector"
+        android:scaleType="centerInside"
+        android:src="@drawable/search_here_vector" />
 </RelativeLayout>

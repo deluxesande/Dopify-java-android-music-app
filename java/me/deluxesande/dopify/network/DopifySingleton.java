@@ -6,19 +6,19 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 import com.android.volley.Request;
 
-public class MySingleton {
-    private static MySingleton instance;
+public class DopifySingleton {
+    private static DopifySingleton instance;
     private RequestQueue requestQueue;
     private static Context ctx;
 
-    private MySingleton(Context context) {
+    private DopifySingleton(Context context) {
         ctx = context;
         requestQueue = getRequestQueue();
     }
 
-    public static synchronized MySingleton getInstance(Context context) {
+    public static synchronized DopifySingleton getInstance(Context context) {
         if (instance == null) {
-            instance = new MySingleton(context);
+            instance = new DopifySingleton(context);
         }
         return instance;
     }

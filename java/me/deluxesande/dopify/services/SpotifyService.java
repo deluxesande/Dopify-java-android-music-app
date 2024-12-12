@@ -89,4 +89,32 @@ public class SpotifyService {
 
         DopifySingleton.getInstance(context).addToRequestQueue(request);
     }
+
+    public void fetchPopularRecommendations(VolleyResponseListener volleyResponseListener) {
+        String url = BASE_URL + "/recommendations/?limit=20&seed_artists=74HCIpcjuBFnsd7PoYSglQ%2C4Rj9lQm9oSiMlirgpsM6eo%2C4wAqlYtTaaHELEgyCh9KjG";
+
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                // Handle the JSONObject response
+                volleyResponseListener.onResponse(response);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e("SpotifyService", "Something went wrong", error);
+                volleyResponseListener.onError("Something went wrong");
+            }
+        }) {
+            @Override
+            public Map<String, String> getHeaders() {
+                Map<String, String> headers = new HashMap<>();
+                headers.put("x-rapidapi-key", API_KEY);
+                headers.put("x-rapidapi-host", BuildConfig.API_HOST);
+                return headers;
+            }
+        };
+
+        DopifySingleton.getInstance(context).addToRequestQueue(request);
+    }
 }

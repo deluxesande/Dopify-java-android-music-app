@@ -36,7 +36,7 @@ public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.MusicViewHol
         Music music = musicList.get(position);
         holder.musicTitle.setText(music.getTitle());
         holder.musicArtist.setText(music.getArtist());
-        holder.releaseYear.setText(String.valueOf(music.getReleaseYear()));
+        holder.duration.setText(String.valueOf(music.getDuration()) + " mins");
         Glide.with(holder.itemView.getContext()).load(music.getCoverArtUrl()).into(holder.coverArt);
     }
 
@@ -48,14 +48,14 @@ public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.MusicViewHol
     public static class MusicViewHolder extends RecyclerView.ViewHolder {
         TextView musicTitle;
         TextView musicArtist;
-        TextView releaseYear;
+        TextView duration;
         ImageView coverArt;
 
         public MusicViewHolder(@NonNull View itemView) {
             super(itemView);
             musicTitle = itemView.findViewById(R.id.music_title);
             musicArtist = itemView.findViewById(R.id.music_artist);
-            releaseYear = itemView.findViewById(R.id.release_year);
+            duration = itemView.findViewById(R.id.duration);
             coverArt = itemView.findViewById(R.id.cover_art);
         }
     }

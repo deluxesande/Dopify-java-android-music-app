@@ -77,7 +77,7 @@ public class SearchPage extends Fragment {
                         musicList.clear();
                         musicList.addAll(listObject);
                         musicAdapter.notifyDataSetChanged();
-                        Toast.makeText(getContext(), response.toString(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), String.valueOf(listObject.size()), Toast.LENGTH_SHORT).show();
                     }
                 });
             }
@@ -94,19 +94,28 @@ public class SearchPage extends Fragment {
     private List<Music> parseMusicResponse(JSONObject response) {
         List<Music> musicList = new ArrayList<>();
         try {
-            JSONArray items = response.getJSONObject("albums").getJSONArray("items");
+            JSONArray items = response.getJSONObject("tracks").getJSONArray("items");
             for (int i = 0; i < items.length(); i++) {
-                JSONObject album = items.getJSONObject(i).getJSONObject("data");
-                String title = album.getString("name");
-                String artist = album.getJSONObject("artists").getJSONArray("items").getJSONObject(0).getJSONObject("profile").getString("name");
-                String albumUri = album.getString("uri");
-                String coverArtUrl = album.getJSONObject("coverArt").getJSONArray("sources").getJSONObject(0).getString("url");
-                int releaseYear = album.getJSONObject("date").getInt("year");
-                musicList.add(new Music(title, artist, albumUri, coverArtUrl, releaseYear));
+                JSONObject track = items.getJSONObject(i).getJSONObject("data");
+                String uri = track.getString("uri");
+                String id = track.getString("id");
+                String name = track.getString("name");
+                String album = track.getJSONObject("albumOfTrack").getString("name");
+                String artist = "";
+                if (track.has("artists")) {
+                    artist = track.getJSONObject("artists").getJSONArray("items").getJSONObject(0).getJSONObject("profile").getString("name");
+                }
+                String contentRating = track.getJSONObject("contentRating").getString("label");
+                long durationMilliseconds = track.getJSONObject("duration").getLong("totalMilliseconds");
+                int durationMinutes = (int) (durationMilliseconds / 60000); // Convert milliseconds to minutes
+                boolean playability = track.getJSONObject("playability").getBoolean("playable");
+                String coverArtUrl = track.getJSONObject("albumOfTrack").getJSONObject("coverArt").getJSONArray("sources").getJSONObject(0).getString("url");
+
+                musicList.add(new Music(name, artist, uri, album, id, contentRating, durationMinutes, playability, coverArtUrl));
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-    return musicList;
-}
+        return musicList;
+    }
 }

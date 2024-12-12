@@ -50,4 +50,12 @@
         android:contentDescription="Search Here Vector"
         android:scaleType="centerInside"
         android:src="@drawable/search_here_vector" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/search_results_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/search_bar"
+        android:visibility="gone"
+        android:padding="16dp" />
 </RelativeLayout>
